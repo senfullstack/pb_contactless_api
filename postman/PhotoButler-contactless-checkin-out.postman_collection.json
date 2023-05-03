@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f9b3fe6d-74a4-466e-b2a9-22a00f73ac6c",
+		"_postman_id": "137f0d10-433b-403a-a707-7e57665b4f4f",
 		"name": "PhotoButler-contactless-checkin/out",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -21,14 +21,7 @@
 			],
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{Token}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
@@ -224,7 +217,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{HostName}}/reservation?reservationId=149464",
+					"raw": "{{HostName}}/reservation?reservationId=150149",
 					"host": [
 						"{{HostName}}"
 					],
@@ -234,7 +227,7 @@
 					"query": [
 						{
 							"key": "reservationId",
-							"value": "149464"
+							"value": "150149"
 						}
 					]
 				}
