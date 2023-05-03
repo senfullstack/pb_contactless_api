@@ -1,0 +1,332 @@
+{
+	"info": {
+		"_postman_id": "f9b3fe6d-74a4-466e-b2a9-22a00f73ac6c",
+		"name": "PhotoButler-contactless-checkin/out",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get OAuth Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{HostName}}/getToken",
+					"host": [
+						"{{HostName}}"
+					],
+					"path": [
+						"getToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Reservation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-hotelid",
+						"value": "{{HotelId}}",
+						"type": "default"
+					},
+					{
+						"key": "x-app-key",
+						"value": "{{AppKey}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"guest\": {\r\n        \"firstName\": \"Krishna\",\r\n        \"lastName\": \"Subaraj\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HostName}}/reservation",
+					"host": [
+						"{{HostName}}"
+					],
+					"path": [
+						"reservation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post CheckIn",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-hotelid",
+						"value": "{{HotelId}}",
+						"type": "default"
+					},
+					{
+						"key": "x-app-key",
+						"value": "{{AppKey}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"reservationId\":  \"149452\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HostName}}/checkin",
+					"host": [
+						"{{HostName}}"
+					],
+					"path": [
+						"checkin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post CheckOut",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-hotelid",
+						"value": "{{HotelId}}",
+						"type": "default"
+					},
+					{
+						"key": "x-app-key",
+						"value": "{{AppKey}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"reservationId\":  \"149195\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HostName}}/checkout",
+					"host": [
+						"{{HostName}}"
+					],
+					"path": [
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reservation by ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-hotelid",
+						"value": "{{HotelId}}",
+						"type": "default"
+					},
+					{
+						"key": "x-app-key",
+						"value": "{{AppKey}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HostName}}/reservation?reservationId=149464",
+					"host": [
+						"{{HostName}}"
+					],
+					"path": [
+						"reservation"
+					],
+					"query": [
+						{
+							"key": "reservationId",
+							"value": "149464"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reservation by any",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-hotelid",
+						"value": "{{HotelId}}",
+						"type": "default"
+					},
+					{
+						"key": "x-app-key",
+						"value": "{{AppKey}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HostName}}/searchReservation",
+					"host": [
+						"{{HostName}}"
+					],
+					"path": [
+						"searchReservation"
+					],
+					"query": [
+						{
+							"key": "arrivalEndDate",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "arrivalStartDate",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "departureEndDate",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "departureStartDate",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "surname",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "givenName",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "roomId",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
